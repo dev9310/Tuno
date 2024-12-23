@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-mwa=0p(v&5b9#u0w$z=62)1gn)=x=a09s%707ce)p+o#gh2=99
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -119,16 +120,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
 
-# This is the location for your static files (like CSS, JS) during development
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),  # Or your actual static directory location
+    os.path.join(BASE_DIR, "static"),  # Your static files directory during development
 ]
+
+# For production, collect static files here
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Use WhiteNoise to serve static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# This is the location where static files will be collected for production (run `collectstatic` to gather static files here)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Ensure it's a separate directory
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
