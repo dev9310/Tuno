@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mwa=0p(v&5b9#u0w$z=62)1gn)=x=a09s%707ce)p+o#gh2=99
 DEBUG = True
 
 # ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
-ALLOWED_HOSTS = [ '.vercel.app' , 'musicplayer.vercel.app' ,'.now.sh' , 'localhost' ,'127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -128,7 +128,7 @@ STATICFILES_DIRS = [
 ]
 
 # For production, collect static files here
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles','static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 # Use WhiteNoise to serve static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
