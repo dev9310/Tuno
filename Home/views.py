@@ -13,8 +13,8 @@ def Search(request):
     se = SongExtracter()
         
     query = request.POST.get('search_query', '')  
-    df = se.get_search_result(query)
-    data = df.to_dict(orient='records')
+    data = se.get_search_result(query)
+    
     params ={
         'data':data
     }

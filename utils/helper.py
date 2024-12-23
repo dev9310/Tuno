@@ -29,7 +29,6 @@ class SongExtracter:
             return pd.DataFrame(), pd.DataFrame()
         
         basic_data = []
-        detailed_data = []
         data = response.json()
 
         for idx, item in enumerate(data.get("items", [])):
@@ -62,7 +61,8 @@ class SongExtracter:
             if len(basic_data) >= max_results:
                 break
         
-        return  pd.DataFrame(basic_data)
+        
+        return  pd.DataFrame(basic_data).to_dict(orient='records')
 
     def get_song_details(self, url):
         """
