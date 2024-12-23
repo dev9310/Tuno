@@ -1,0 +1,27 @@
+<script>
+  // Add songs Dynamically
+  function addsong(name, singer) {
+    const loader = `
+            <div class="loader" >
+                <div class="song">
+                    <p class="name">${name}</p>
+                    <p class="artist">${singer}</p>
+                </div>
+                <div class="albumcover"></div>
+                <div class="play"></div>
+                <div class="loading visually-hidden">
+                    <div class="load"></div>
+                    <div class="load"></div>
+                    <div class="load"></div>
+                    <div class="load"></div>
+                </div>
+            </div>`;
+    document.querySelector(".main").innerHTML += loader;
+  }
+  // Example usage
+  addsong("The Way", "Frank Sinatra");
+  addsong("Imagine", "John Lennon");
+  addsong("Imagine", "John Lennon");
+  addsong("Bohemian Rhapsody", "Queen");
+  addsong("Bohemian Rhapsody", "Queen");
+</script>
