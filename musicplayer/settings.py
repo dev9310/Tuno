@@ -125,6 +125,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # Or your actual static directory location
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # This is the location where static files will be collected for production (run `collectstatic` to gather static files here)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Ensure it's a separate directory
