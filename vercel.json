@@ -15,5 +15,8 @@
             "src": "/(.*)",
             "dest": "musicplayer/wsgi.py"
         }
-    ]
+    ],
+    "static": {
+        "public": "static"
+    }
 }
