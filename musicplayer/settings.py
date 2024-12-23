@@ -118,10 +118,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# This is the location for your static files (like CSS, JS) during development
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR , "static"),
- 
+    os.path.join(BASE_DIR, "static"),  # Or your actual static directory location
 ]
+
+# This is the location where static files will be collected for production (run `collectstatic` to gather static files here)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Ensure it's a separate directory
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
