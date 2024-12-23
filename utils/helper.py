@@ -62,7 +62,7 @@ class SongExtracter:
                 break
         
         
-        return  pd.DataFrame(basic_data).to_dict(orient='records')
+        return  basic_data
 
     def get_song_details(self, url):
         """
@@ -86,5 +86,4 @@ class SongExtracter:
         details['Audio Source'] = audio_src
 
         return details
-    
     

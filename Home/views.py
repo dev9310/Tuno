@@ -20,5 +20,6 @@ def Search(request):
     }
     
     
-    # return HttpResponse(data)    
-    return render(request , 'Home/search.html' ,params )
+    
+    return HttpResponse(data)    
+    # return render(request , 'Home/search.html' ,params )
