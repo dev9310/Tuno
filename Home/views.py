@@ -21,5 +21,5 @@ def Search(request):
     
     
     
-    return HttpResponse("DIV")    
+    return HttpResponse(f"DIV{data}")    
     # return render(request , 'Home/search.html' ,params )
