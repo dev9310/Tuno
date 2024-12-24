@@ -14,12 +14,10 @@ def Search(request):
         
     query = request.POST.get('search_query', '')  
     data = se.get_search_result(query)
-    
-    # params ={
-    #     'data':data
-    # }
-    
-    
-    
-    return HttpResponse(f"DIV{data}")    
-    # return render(request , 'Home/search.html' ,params )
+    if data.empty:
+        return HttpResponse("No data found")
+    params ={
+        'data':data
+    }
+
+    return render(request , 'Home/search.html' ,params )

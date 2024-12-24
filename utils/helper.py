@@ -26,8 +26,8 @@ class SongExtracter:
         if response.status_code != 200:
             print(f"Failed to fetch results. Status code: {response.status_code}")
             print(f"Response content: {response.text}")
-            return  str(api_url)       
-            # return pd.DataFrame(), pd.DataFrame()
+                  
+            return pd.DataFrame(), pd.DataFrame()
         
         basic_data = []
         data = response.json()
@@ -64,8 +64,8 @@ class SongExtracter:
                 break
         
         
-        return  str(self.API_KEY)
-        # return  basic_data
+        
+        return  basic_data
 
     def get_song_details(self, url):
         """
