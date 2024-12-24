@@ -13,7 +13,7 @@ class SongExtracter:
     def __init__(self):
         
         self.API_KEY =os.getenv("MY_API_KEY")
-        self.CX =os.getenv("MY_API_CX")
+        self.CX ="b0a5c1b510456457b"
 
     def get_search_result(self, query="aadat by atif aslam", max_results=5):
         """
