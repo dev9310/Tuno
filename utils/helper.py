@@ -7,13 +7,13 @@ import os
 # load_dotenv()
 
 
-api_key = os.getenv("MY_API_KEY")
-api_cx = os.getenv("MY_API_CX")
+
 
 class SongExtracter:
-    def __init__(self, API_KEY=api_key, CX=api_cx):
-        self.API_KEY = API_KEY
-        self.CX = CX
+    def __init__(self):
+        
+        self.API_KEY =os.getenv("MY_API_KEY")
+        self.CX =os.getenv("MY_API_CX")
 
     def get_search_result(self, query="aadat by atif aslam", max_results=5):
         """
@@ -26,7 +26,7 @@ class SongExtracter:
         if response.status_code != 200:
             print(f"Failed to fetch results. Status code: {response.status_code}")
             print(f"Response content: {response.text}")
-            return  str(self.API_KEY)       
+            return  str(api_url)       
             # return pd.DataFrame(), pd.DataFrame()
         
         basic_data = []
