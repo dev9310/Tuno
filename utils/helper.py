@@ -2,9 +2,9 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
 api_key = os.getenv("MY_API_KEY")
@@ -63,7 +63,7 @@ class SongExtracter:
                 break
         
         
-        return  self.API_KEY
+        return  str(self.API_KEY)
         # return  basic_data
 
     def get_song_details(self, url):
