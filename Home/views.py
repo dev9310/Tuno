@@ -14,7 +14,7 @@ def Search(request):
         
     query = request.POST.get('search_query', '')  
     data = se.get_search_result(query)
-    if data.empty:
+    if not data:
         return HttpResponse("No data found")
     params ={
         'data':data
