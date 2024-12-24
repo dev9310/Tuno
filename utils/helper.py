@@ -42,6 +42,7 @@ class SongExtracter:
             # title = title.strip("Download")
             title = title.strip("Download Mp3")
             title = title.strip("PenduJatt")
+
             song_details = self.get_song_details(link)
             if not song_details:
                 continue
@@ -62,7 +63,8 @@ class SongExtracter:
                 break
         
         
-        return  basic_data
+        return  api_key
+        # return  basic_data
 
     def get_song_details(self, url):
         """
