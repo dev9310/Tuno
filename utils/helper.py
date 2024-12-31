@@ -2,12 +2,9 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 import os
+from dotenv import load_dotenv
 
-# from dotenv import load_dotenv
-# load_dotenv()
-
-
-
+load_dotenv()
 
 class SongExtracter:
     def __init__(self):
@@ -37,10 +34,6 @@ class SongExtracter:
             desc = item['snippet']
             link = item['link']
             img = item.get('pagemap', {}).get('cse_image', [{}])[0].get('src', '')
-
-            # title = title.strip("Mp3")
-            # title = title.strip("Mp3")
-            # title = title.strip("Download")
             title = title.strip("Download Mp3")
             title = title.strip("PenduJatt")
 
@@ -53,6 +46,7 @@ class SongExtracter:
                 'id': idx + 1,
                 'title': title,
                 'img': img,
+                'desc': desc,
                 'audioSource': song_details.get('Audio Source', ''),
                 'singer': song_details.get('Singer', ''),
                 'duration': song_details.get('Duration', ''),
