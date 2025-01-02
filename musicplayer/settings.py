@@ -82,8 +82,20 @@ WSGI_APPLICATION = 'musicplayer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join( BASE_DIR , 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'Tuno', # Database
+    #     'USER': 'bannu', # Database user
+    #     'PASSWORD': 'bannu882', # Database password
+    #     'HOST': 'localhost', # Database host
+    #     'PORT': '5432', # Database port
+        
+    # }
+    
+    
+    
 }
 
 
@@ -129,8 +141,8 @@ STATICFILES_DIRS = [
 ]
 
 # For production, collect static files here
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 # Use WhiteNoise to serve static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
