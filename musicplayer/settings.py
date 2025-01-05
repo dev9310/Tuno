@@ -80,19 +80,19 @@ WSGI_APPLICATION = 'musicplayer.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join( BASE_DIR , 'db.sqlite3'),
-    }
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'Tuno', # Database
-    #     'USER': 'bannu', # Database user
-    #     'PASSWORD': 'bannu882', # Database password
-    #     'HOST': 'localhost', # Database host
-    #     'PORT': '5432', # Database port
-        
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join( BASE_DIR , 'db.sqlite3'),
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',  # Replace with the database name from Supabase
+        'USER': 'postgres.cdwhicyllzhfslnmyaxl',  # Replace with the database user from Supabase
+        'PASSWORD': 'bannu882',  # Replace with the password from Supabase
+        'HOST': 'aws-0-ap-south-1.pooler.supabase.com',          # Replace with the host from Supabase
+        'PORT': '6543',   
+        'PoolMode': 'transaction',
+    }
     
     
     
