@@ -34,9 +34,12 @@ class SongExtracter:
             desc = item['snippet']
             link = item['link']
             img = item.get('pagemap', {}).get('cse_image', [{}])[0].get('src', '')
-            title = title.strip("Download Mp3")
-            title = title.strip("PenduJatt")
-
+            
+            # Clean up the title
+            title = title.replace("PenduJatt", "")
+            title = title.replace("Download", "")
+            title = title.replace("Mp3", "")
+            print(f"Fetching details for: {title}")
             song_details = self.get_song_details(link)
             if not song_details:
                 continue
@@ -52,10 +55,11 @@ class SongExtracter:
                 'duration': song_details.get('Duration', ''),
                 'releasedOn': song_details.get('Released on', ''),
             })
+            
 
             
-            if len(basic_data) >= max_results:
-                break
+            # if len(basic_data) >= max_results:
+            #     break
         
         
         

@@ -11,6 +11,9 @@ def Home(request):
 
 
 def Search(request):
+    
+    
+        
     se = SongExtracter()
     query = request.POST.get('search_query', '')  
     data = se.get_search_result(query)
@@ -21,10 +24,12 @@ def Search(request):
     
 
     if not data:
-        return HttpResponse("No data found")
+        return render(request, 'Errors/SongNotFound.html')
 
     for i in data:
+        
         # Check if a song with the same details already exists
+        # print(i['title'])
         exists = Song.objects.filter(
             title=i['title'],
             image=i['img'],
