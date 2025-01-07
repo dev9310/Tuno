@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',  # Add this line
     'Home',
+    'Playlists',
 ]
 
 MIDDLEWARE = [
