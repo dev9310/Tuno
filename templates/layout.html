@@ -31,9 +31,8 @@ Tuno     {% endblock %}
     <!-- Navbar for Small Screens -->
     <nav class="navbar navbar-expand-md d-md-none bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand text-warning overflow-hidden" href="#"
-          >TUNO</a
-        >
+        <a class="navbar-brand text-warning overflow-hidden" href="{% url 'home' %}">TUNO</a>
+          
         <button
           class="menu-toggler"
           type="button"
@@ -71,7 +70,12 @@ Tuno     {% endblock %}
     <div class="main-layout grid">
       <!-- Sidebar for Desktop -->
       <div class="sidebar d-md-flex flex-column rounded-4">
-        <h4 class="text-warning">TUNO</h4>
+        <h4 class="text-warning">
+        <a class='text-warning' href="{% url 'home' %}">
+
+          TUNO
+        </a>
+        </h4>
         <a href="#">
           <svg
             class="icon"
@@ -144,7 +148,7 @@ Tuno     {% endblock %}
           Playlists
         </a>
         <!-- Logout Div -->
-        <div class="mt-auto">
+        <div class="mt-auto visually-hidden">
           <a href="#" class="text-danger">
             <svg
               class="icon"

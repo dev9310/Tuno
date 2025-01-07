@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -78,25 +78,20 @@ WSGI_APPLICATION = 'musicplayer.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join( BASE_DIR , 'db.sqlite3'),
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',  # Replace with the database name from Supabase
-        'USER': 'postgres.cdwhicyllzhfslnmyaxl',  # Replace with the database user from Supabase
-        'PASSWORD': 'bannu882',  # Replace with the password from Supabase
-        'HOST': 'aws-0-ap-south-1.pooler.supabase.com',          # Replace with the host from Supabase
-        'PORT': '6543',   
-        'PoolMode': 'transaction',
+        'NAME': 'postgres',  # Supabase database name
+        'USER': 'postgres.cdwhicyllzhfslnmyaxl',  # Supabase user
+        'PASSWORD': 'bannu882',  # Supabase password
+        'HOST': 'aws-0-ap-south-1.pooler.supabase.com',  # Supabase host
+        'PORT': '6543',  # Supabase port
+        'OPTIONS': {
+            'sslmode': 'require',  # Enforce SSL
+        },
     }
-    
-    
-    
 }
+
 
 
 # Password validation
