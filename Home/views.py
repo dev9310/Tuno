@@ -1,5 +1,5 @@
 from django.shortcuts import render , HttpResponse
-from utils.helper import  SongExtracter
+from utils.helper import  SongExtractor
 import pandas as pd
 
 from Home.models import Song , SearchQuerry
@@ -14,7 +14,7 @@ def Search(request):
     
     
         
-    se = SongExtracter()
+    se = SongExtractor()
     query = request.POST.get('search_query', '')  
     data = se.get_search_result(query)
     
@@ -32,24 +32,24 @@ def Search(request):
         # print(i['title'])
         exists = Song.objects.filter(
             title=i['title'],
-            image=i['img'],
-            description=i['desc'],
-            audio_source=i['audioSource'],
+            image=i['image'],
+            description=i['description'],
+            audio_source=i['audio_source'],
             singer=i['singer'],
             duration=i['duration'],
-            released_on=i['releasedOn']
+            released_on=i['released_on']
         ).exists()
 
         if not exists:
             # Create and save the song only if it doesn't exist
             song = Song.objects.create(
                 title=i['title'],
-                image=i['img'],
-                description=i['desc'],
-                audio_source=i['audioSource'],
+                image=i['image'],
+                description=i['description'],
+                audio_source=i['audio_source'],
                 singer=i['singer'],
                 duration=i['duration'],
-                released_on=i['releasedOn']
+                released_on=i['released_on']
             )
             print(f"Saved song: {song}")
         else:

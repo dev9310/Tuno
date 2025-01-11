@@ -5,6 +5,8 @@ import os
 from dotenv import load_dotenv
 import time
 import logging
+from supabase import create_client
+from django.http import JsonResponse
 
 # Load environment variables
 load_dotenv()
@@ -13,10 +15,10 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class SongExtracter:
+class SongExtractor:
     def __init__(self):
-        self.API_KEY = os.getenv("MY_API_KEY")  # Google API key from environment
-        self.CX = "b0a5c1b510456457b"  # Custom Search Engine ID
+        self.API_KEY = os.getenv("MY_API_KEY", "default_api_key")  # Google API key from environment
+        self.CX = os.getenv("CUSTOM_SEARCH_CX", "default_cx")  # Custom Search Engine ID
 
     def retry_request(self, url, retries=3, delay=2):
         """
@@ -36,10 +38,11 @@ class SongExtracter:
     def get_search_result(self, query="aadat by atif aslam", max_results=5):
         """
         Fetches search results from the Google Custom Search API.
-        Returns a DataFrame containing song data.
+        Returns a list containing song data dictionaries.
         """
         api_url = f"https://customsearch.googleapis.com/customsearch/v1?q={query}&key={self.API_KEY}&cx={self.CX}"
         response = self.retry_request(api_url)
+        print(api_url)
 
         if not response or response.status_code != 200:
             try:
@@ -47,10 +50,10 @@ class SongExtracter:
                 logger.error(f"API Error: {error}")
             except Exception:
                 logger.error("Failed to fetch results and parse error.")
-            return pd.DataFrame()
+            return []
 
         data = response.json()
-        basic_data = []
+        results = []
 
         for idx, item in enumerate(data.get("items", [])):
             title = item['title']
@@ -67,23 +70,23 @@ class SongExtracter:
             if not song_details:
                 continue
 
-            # Append to basic data
-            basic_data.append({
+            # Append to results
+            results.append({
                 'id': idx + 1,
                 'title': title,
-                'img': img,
-                'desc': desc,
-                'audioSource': song_details.get('Audio Source', ''),
+                'image': img,
+                'description': desc,
+                'audio_source': song_details.get('Audio Source', ''),
                 'singer': song_details.get('Singer', ''),
                 'duration': song_details.get('Duration', ''),
-                'releasedOn': song_details.get('Released on', ''),
+                'released_on': song_details.get('Released on', ''),
             })
 
             # Stop if max_results is reached
-            if len(basic_data) >= max_results:
+            if len(results) >= max_results:
                 break
 
-        return basic_data
+        return results
 
     def get_song_details(self, url):
         """
@@ -104,19 +107,76 @@ class SongExtracter:
             logger.warning(f"Details not found for URL: {url}")
             return None
 
-        audio_src = song_link.get('src', '')
-        details = {detail.text.split(':')[0].strip(): detail.text.split(':', 1)[1].strip() for detail in details_div}
-        details['Audio Source'] = audio_src
+        try:
+            audio_src = song_link.get('src', '')
+            details = {
+                detail.text.split(':')[0].strip(): detail.text.split(':', 1)[1].strip()
+                for detail in details_div
+            }
+            details['Audio Source'] = audio_src
+            return details
+        except Exception as e:
+            logger.error(f"Error parsing details from URL {url}: {e}")
+            return None
 
-        return details
+class DBManager:
+    def __init__(self):
+        self.supabase_url = os.getenv('SUPABASE_URL', 'default_supabase_url')
+        self.supabase_key = os.getenv('SUPABASE_API', 'default_supabase_key')
+        self.supabase = self.get_supabase_client()
+
+
+    def get_supabase_client(self):
+        
+        return create_client(self.supabase_url, self.supabase_key)
+
+    def fetch_data(self):
+        """
+        Fetches data from Supabase table `Home_song` and returns it as a JSON-like dict.
+        """
+        supabase = self.get_supabase_client()
+        try:
+            response = supabase.table("Home_song").select("*").limit(10).execute()
+            if 'error' in response:  # Adjusted to check for 'error' in the response
+                logger.error(f"Supabase Error: {response['error']}")
+                return {"error": response['error']}
+            
+            return response.data  # Return the raw data
+        
+        
+        except Exception as e:
+            logger.error(f"Unexpected error fetching data: {e}")
+            return {"error": "Internal server error"}
+        
+
+
+def get_supabase_client():
+    supabase_url = os.getenv('SUPABASE_URL', 'default_supabase_url')
+    supabase_key = os.getenv('SUPABASE_API', 'default_supabase_key')
+    return create_client(supabase_url, supabase_key)
 
 
 # Example Usage
 if __name__ == "__main__":
-    extractor = SongExtracter()
-    results = extractor.get_search_result(query="aadat by atif aslam", max_results=5)
+    # # Initialize Supabase client
+    # db = DBManager()
+    # supabase = db.get_supabase_client()
 
-    if not results.empty:
-        print(results)
-    else:
-        logger.error("No results found or an error occurred.")
+    # # Example to fetch data from Supabase
+    # try:
+    #     response = supabase.table("Home_song").select("*").execute()
+    #     print(response.data)
+    # except Exception as e:
+    #     logger.error(f"Error fetching data from Supabase: {e}")
+
+    # # Example to fetch and process song search results
+    # # extractor = SongExtractor()
+    # # results = extractor.get_search_result(query="aadat by atif aslam", max_results=5)
+
+    # # if results:
+    # #     print(pd.DataFrame(results))
+    # else:
+    #     logger.error("No results found or an error occurred.")
+    supa =  DBManager()
+    
+    print(supa.fetch_data())
