@@ -156,27 +156,27 @@ def get_supabase_client():
     return create_client(supabase_url, supabase_key)
 
 
-# Example Usage
-if __name__ == "__main__":
-    # # Initialize Supabase client
-    # db = DBManager()
-    # supabase = db.get_supabase_client()
+# # Example Usage
+# if __name__ == "__main__":
+#     # # Initialize Supabase client
+#     # db = DBManager()
+#     # supabase = db.get_supabase_client()
 
-    # # Example to fetch data from Supabase
-    # try:
-    #     response = supabase.table("Home_song").select("*").execute()
-    #     print(response.data)
-    # except Exception as e:
-    #     logger.error(f"Error fetching data from Supabase: {e}")
+#     # # Example to fetch data from Supabase
+#     # try:
+#     #     response = supabase.table("Home_song").select("*").execute()
+#     #     print(response.data)
+#     # except Exception as e:
+#     #     logger.error(f"Error fetching data from Supabase: {e}")
 
-    # # Example to fetch and process song search results
-    # # extractor = SongExtractor()
-    # # results = extractor.get_search_result(query="aadat by atif aslam", max_results=5)
+#     # # Example to fetch and process song search results
+#     # # extractor = SongExtractor()
+#     # # results = extractor.get_search_result(query="aadat by atif aslam", max_results=5)
 
-    # # if results:
-    # #     print(pd.DataFrame(results))
-    # else:
-    #     logger.error("No results found or an error occurred.")
-    supa =  DBManager()
+#     # # if results:
+#     # #     print(pd.DataFrame(results))
+#     # else:
+#     #     logger.error("No results found or an error occurred.")
+#     supa =  DBManager()
     
-    print(supa.fetch_data())
+#     print(supa.fetch_data())
