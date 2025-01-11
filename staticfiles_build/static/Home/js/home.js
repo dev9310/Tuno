@@ -7,7 +7,7 @@ const player_artist = document.getElementsByClassName('track-artist')
 const audio = document.getElementById("aud");
 const playBtn = document.querySelector(".play-btn");
 const pauseBtn = document.querySelector(".pause");
-
+const player_div = document.querySelector('.music-card')
 
 
 
@@ -63,8 +63,9 @@ function convertToTime(floatValue) {
 function clickedSong(song_detail) {
     document.querySelector('.track-title').textContent = song_detail.title;
     document.querySelector('.track-artist').textContent = song_detail.singer;
-    document.querySelector('.track-img').setAttribute('src', song_detail.img);
-    document.querySelector('#aud').setAttribute('src', song_detail.audioSource);
+    document.querySelector('.track-img').setAttribute('src', song_detail.image);
+
+    document.querySelector('#aud').setAttribute('src', song_detail.audio_source);
 
 
 }
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //     pauseBtn.classList.add("visually-hidden");
 
             // }
-
+            player_div.classList.remove("visually-hidden");
             loader.classList.add("active");
             loader.children[3].classList.remove("visually-hidden");
             loader.children[2].classList.add("visually-hidden");
