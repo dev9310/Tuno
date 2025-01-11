@@ -12,7 +12,13 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'musicplayer.settings')
+ 
+try :
+    # from dj_static import Cling
+    application = get_wsgi_application()
+except Exception as e:
+    print(e)
+    
 
-application = get_wsgi_application()
 
 app = application
