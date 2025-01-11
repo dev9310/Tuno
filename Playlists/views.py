@@ -1,5 +1,5 @@
 from django.shortcuts import render , HttpResponse
-# from utils.helper import DBManager , get_supabase_client    
+from utils.helper import DBManager , get_supabase_client    
 # Create your views here.
 
 
