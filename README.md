@@ -66,7 +66,7 @@ Contributions are welcome! Please follow these steps:
 
 ## Contact
 
-If you have any questions or suggestions, feel free to contact me at devshakeywar.com].
+If you have any questions or suggestions, feel free to contact me at [devshakeywar.com].
 
 ## License
 
