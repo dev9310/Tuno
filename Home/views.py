@@ -11,8 +11,6 @@ def Home(request):
 
 
 def Search(request):
-    
-    
         
     se = SongExtractor()
     query = request.POST.get('search_query', '')  

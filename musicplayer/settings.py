@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dotenv
+from dotenv import load_dotenv
+
+load_dotenv()
+ 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -82,12 +88,12 @@ WSGI_APPLICATION = 'musicplayer.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',  # Supabase database name
-        'USER': 'postgres.cdwhicyllzhfslnmyaxl',  # Supabase user
-        'PASSWORD': 'bannu882',  # Supabase password
-        'HOST': 'aws-0-ap-south-1.pooler.supabase.com',  # Supabase host
-        'PORT': '6543',  # Supabase port
+        'ENGINE': os.getenv('ENGINE' , 'default_Engine') ,
+        'NAME': os.getenv('NAME' , ' default_NAME'),  # Supabase database name
+        'USER': os.getenv('USER' , 'default_USER'),  # Supabase user
+        'PASSWORD': os.getenv('PASSWORD' , 'default_PASSWORD'),  # Supabase password
+        'HOST': os.getenv('HOST' , 'default_HOST'),  # Supabase host
+        'PORT': os.getenv('PORT' , 'default_PORT'),  # Supabase port
         'OPTIONS': {
             'sslmode': 'require',  # Enforce SSL
         },
