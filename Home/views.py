@@ -1,5 +1,6 @@
 from django.shortcuts import render , HttpResponse
 from utils.helper import  SongExtractor
+from utils.scrapper import SearchResult
 import pandas as pd
 
 from Home.models import Song , SearchQuerry
@@ -12,9 +13,14 @@ def Home(request):
 
 def Search(request):
         
-    se = SongExtractor()
+    sr = SearchResult()
+    
+    # se = SongExtractor()
     query = request.POST.get('search_query', '')  
-    data = se.get_search_result(query)
+    data = [] 
+    for i in sr.google_custom_search(query):
+        data.append(i)
+    # data = se.get_search_result(query)
     
     # Save the search query 
     saveQuerry = SearchQuerry.objects.create(search=query)
@@ -48,7 +54,7 @@ def Search(request):
                 singer=i['singer'],
                 duration=i['duration'],
                 released_on=i['released_on']
-            )
+            )              
             print(f"Saved song: {song}")
         else:
             print(f"Duplicate song found, not saving: {i['title']}")

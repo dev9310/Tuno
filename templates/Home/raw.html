@@ -1,0 +1,44 @@
+{% comment %} {% for song in songs %}
+
+<div class="loader" id="{{song.id}}">
+  <div class="song">
+    <p class="name">{{song.title}}</p>
+    <p class="artist">{{song.singer}}</p>
+  </div>
+  <div class="albumcover">
+    <img width="100%" height="100%" src="{{ song.image }}" alt="" />
+  </div>
+  <div class="play"></div>
+  <div class="loading visually-hidden">
+    <div class="load"></div>
+    <div class="load"></div>
+    <div class="load"></div>
+    <div class="load"></div>
+  </div>
+</div>
+
+{% empty %}
+<tr>
+  <td colspan="3">No data available</td>
+</tr>
+{% endfor %} {% endcomment %}
+
+<!-- Adding songs dynamically -->
+{% comment %} {% for song in data %}
+<div class="loader" id="{{ song.id }}">
+  <div class="song">
+    <p class="name">{{ song.title }}</p>
+    <p class="artist">{{ song.singer }}</p>
+  </div>
+  <div class="albumcover">
+    <img width="100%" height="100%" src="{{ song.image }}" alt="" />
+  </div>
+  <div class="play"></div>
+  <div class="loading visually-hidden">
+    <div class="load"></div>
+    <div class="load"></div>
+    <div class="load"></div>
+    <div class="load"></div>
+  </div>
+</div>
+{% endfor %} {% endcomment %}

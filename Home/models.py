@@ -21,3 +21,14 @@ class Song(models.Model):
     
     def __str__(self):
         return '{} by {}'.format(self.title, self.singer)
+    
+    
+class singers(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.URLField()
+    description = models.TextField()
+    number_of_songs = models.IntegerField()
+    created = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return '{}'.format(self.name)
