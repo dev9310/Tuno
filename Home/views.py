@@ -1,14 +1,17 @@
 from django.shortcuts import render , HttpResponse
 from utils.helper import  SongExtractor
 from utils.scrapper import SearchResult
-import pandas as pd
-
 from Home.models import Song , SearchQuerry , Singer
 # Create your views here.
 
 
 def Home(request):
     return render(request , 'Home/home.html')
+
+
+
+
+
 
 
 def Search(request):

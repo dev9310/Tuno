@@ -24,6 +24,8 @@ class SearchResult:
             time.sleep(delay)
         return None
 
+
+
     def google_custom_search(self, query, max_results=5):
         """Fetch search results continuously and yield them."""
         api_url = "https://customsearch.googleapis.com/customsearch/v1"
@@ -102,17 +104,26 @@ class SearchResult:
             return None
 
 
-# Example Usage
-if __name__ == "__main__":
+# # Example Usage
+# if __name__ == "__main__":
     
+#     sr = SearchResult()
+#     query = "kaise hua"
+#     max_results = 5
+    
+    
+#     for idx, song in enumerate(sr.google_custom_search(query, max_results=max_results), start=1):
+        
+#         # print(f"{idx}. {song['title']} - {song['singer']}")
+#         print(song['title'])
+
+        
+
+if __name__ == "__main__":
     sr = SearchResult()
     query = "kaise hua"
     max_results = 5
-    
-    
-    for idx, song in enumerate(sr.google_custom_search(query, max_results=max_results), start=1):
-        
-        # print(f"{idx}. {song['title']} - {song['singer']}")
-        print(song['title'])
 
-        
+    logger.info(f"Fetching top {max_results} results for query: {query}")
+    for idx, song in enumerate(sr.google_custom_search(query, max_results=max_results), start=1):
+        print(f"{idx}. {song['title']} by {song['singer']}")
