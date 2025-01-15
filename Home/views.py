@@ -3,7 +3,7 @@ from utils.helper import  SongExtractor
 from utils.scrapper import SearchResult
 import pandas as pd
 
-from Home.models import Song , SearchQuerry
+from Home.models import Song , SearchQuerry , Singer
 # Create your views here.
 
 
@@ -25,6 +25,9 @@ def Search(request):
     # Save the search query 
     saveQuerry = SearchQuerry.objects.create(search=query)
     saveQuerry.save()
+    
+    singers = Singer.objects.all()
+    print(singers)
     
 
     if not data:
