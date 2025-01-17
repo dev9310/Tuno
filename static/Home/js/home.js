@@ -53,6 +53,7 @@ function convertToTime(floatValue) {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
 
+
     // Format minutes and seconds to always have 2 digits
     const formattedMinutes = String(minutes).padStart(2, "0");
     const formattedSeconds = String(seconds).padStart(2, "0");
@@ -64,7 +65,7 @@ function clickedSong(song_detail) {
     document.querySelector('.track-title').textContent = song_detail.title;
     document.querySelector('.track-artist').textContent = song_detail.singer;
     document.querySelector('.track-img').setAttribute('src', song_detail.image);
-
+    progressBar[0].style.width = `0%`;
     document.querySelector('#aud').setAttribute('src', song_detail.audio_source);
 
 
