@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',  # Add this line
     'Home',
     'Playlists',
+    'Artists',
 ]
 
 MIDDLEWARE = [

@@ -10,7 +10,5 @@ def Playlist(request):
 
 
     
-    
-    
     return render(request , 'Playlists/playlists.html', {'songs': songs_list})
     # return render(request , 'Playlists/playlists.html')
