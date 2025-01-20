@@ -13,12 +13,15 @@ Tuno
     <p class="heading">Artists</p>
   </div>
 
-  
   {% for artist in artist_list %}
   {% load static %}
-  <div>{{artist.name}} {{artist.song_count}} {{ artist.image }} </div>
-  <img width="20%" height="20%" src="media/{{ artist.image }}" alt="" />
-<br>
+  <div class='artist-div' id="{{artist.id}}">
+
+    <h2 style="color:#F4D793;">{{artist.name}} </h2>
+    <div>Song Count :<h5 style="color:green;     display: inline;"> {{artist.song_count}}  </h5></div>  
+    <img width="20%" height="20%" src="media/{{ artist.image }}" alt="" />
+  </div>
+
   {% endfor %}
     
   
