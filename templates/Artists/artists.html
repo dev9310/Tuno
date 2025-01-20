@@ -12,10 +12,11 @@ Tuno
   <div class="currentplaying">
     <p class="heading">Artists</p>
   </div>
+  {% load static %}
+  <script src="{% static 'Artists/js/artist.js' %}"></script>
 
   {% for artist in artist_list %}
-  {% load static %}
-  <div class='artist-div' id="{{artist.id}}">
+  <div class='artist-div' id="{{artist.id}}" onclick="get_id({{artist}})">
 
     <h2 style="color:#F4D793;">{{artist.name}} </h2>
     <div>Song Count :<h5 style="color:green;     display: inline;"> {{artist.song_count}}  </h5></div>  
@@ -23,7 +24,7 @@ Tuno
   </div>
 
   {% endfor %}
-    
+
   
 </div>
 </div>
